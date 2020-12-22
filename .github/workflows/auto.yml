@@ -1,0 +1,15 @@
+name: 自动上传京东互助码
+on:
+  schedule:
+    - cron: '1 15 * * *'
+  workflow_dispatch:
+jobs:
+  jdFruit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: "京东水果互助码上传"
+        run: |
+          curl -X GET http://api.turinglabs.net/api/v1/jd/farm/create/${{ secrets.MyFruit1 }}/
+          curl -X GET http://api.turinglabs.net/api/v1/jd/farm/create/${{ secrets.MyFruit2 }}/
