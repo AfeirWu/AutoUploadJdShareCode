@@ -7,7 +7,7 @@ jobs:
   jdFruit:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+#       - uses: actions/checkout@v2
       
       - name: "京东水果互助码上传"
         run: |
