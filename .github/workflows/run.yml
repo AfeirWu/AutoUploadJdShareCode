@@ -33,7 +33,6 @@ jobs:
           curl -X GET https://code.chiang.fun/api/v1/jd/jdzz/create/${{ secrets.MyJdzz2 }}/
       - name: Notify To Telegram
         run: |
-          echo "${GITHUB_WORKFLOW}"
           curl -s -o /dev/null -X POST https://api.telegram.org/bot${{ secrets.TG_BOT_TOKEN }}/sendMessage \
           -H "Content-Type: application/json" \
           --data '{"text": "${{github.workflow}}完成","chat_id": "${{ secrets.TG_USER_ID }}"}'
