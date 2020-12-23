@@ -1,15 +1,33 @@
 name: 自动上传京东互助码
 on:
   schedule:
-    - cron: '1 15 * * *'
+    - cron: '10 18 1,10,20 * *'
   workflow_dispatch:
 jobs:
   jdFruit:
     runs-on: ubuntu-latest
     steps:
-#       - uses: actions/checkout@v2
-      
-      - name: "京东水果互助码上传"
+      - name: "京东农场互助码上传"
         run: |
           curl -X GET http://api.turinglabs.net/api/v1/jd/farm/create/${{ secrets.MyFruit1 }}/
           curl -X GET http://api.turinglabs.net/api/v1/jd/farm/create/${{ secrets.MyFruit2 }}/
+      - name: "种豆得豆互助码上传"
+        run: |
+          curl -X GET http://api.turinglabs.net/api/v1/jd/bean/create/${{ secrets.MyBean1 }}/
+          curl -X GET http://api.turinglabs.net/api/v1/jd/bean/create/${{ secrets.MyBean2 }}/
+      - name: "东东萌宠互助码上传"
+        run: |
+          curl -X GET http://api.turinglabs.net/api/v1/jd/pet/create/${{ secrets.MyPet1 }}/
+          curl -X GET http://api.turinglabs.net/api/v1/jd/pet/create/${{ secrets.MyPet2 }}/
+      - name: "京喜工厂互助码上传"
+        run: |
+          curl -X GET http://api.turinglabs.net/api/v1/jd/jxfactory/create/${{ secrets.MyDreamFactory1 }}/
+          curl -X GET http://api.turinglabs.net/api/v1/jd/jxfactory/create/${{ secrets.MyDreamFactory2 }}/
+      - name: "东东工厂互助码上传"
+        run: |
+          curl -X GET http://api.turinglabs.net/api/v1/jd/ddfactory/create/${{ secrets.MyJdFactory1 }}/
+          curl -X GET http://api.turinglabs.net/api/v1/jd/ddfactory/create/${{ secrets.MyJdFactory2 }}/
+      - name: "京东赚赚互助码上传"
+        run: |
+          curl -X GET https://code.chiang.fun/api/v1/jd/jdzz/create/${{ secrets.MyJdzz1 }}/
+          curl -X GET https://code.chiang.fun/api/v1/jd/jdzz/create/${{ secrets.MyJdzz2 }}/
