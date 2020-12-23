@@ -4,7 +4,7 @@ on:
     - cron: '10 18 1,10,20 * *'
   workflow_dispatch:
 jobs:
-  jdFruit:
+  jdJob:
     runs-on: ubuntu-latest
     steps:
       - name: "京东农场互助码上传"
