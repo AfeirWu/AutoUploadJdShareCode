@@ -31,6 +31,10 @@ jobs:
         run: |
           curl -X GET https://code.chiang.fun/api/v1/jd/jdzz/create/${{ secrets.MyJdzz1 }}/
           curl -X GET https://code.chiang.fun/api/v1/jd/jdzz/create/${{ secrets.MyJdzz2 }}/
+      - name: "疯狂的Joy互助码上传"
+        run: |
+          curl -X GET https://code.chiang.fun/api/v1/jd/jdcrazyjoy/create/${{ secrets.MyJoy1 }}/
+          curl -X GET https://code.chiang.fun/api/v1/jd/jdcrazyjoy/create/${{ secrets.MyJoy2 }}/
       - name: Notify To Telegram
         run: |
           curl -s -o /dev/null -X POST https://api.telegram.org/bot${{ secrets.TG_BOT_TOKEN }}/sendMessage \
