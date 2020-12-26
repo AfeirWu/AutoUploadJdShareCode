@@ -9,34 +9,35 @@ jobs:
     steps:
       - name: "京东农场互助码上传"
         run: |
-          curl -X GET http://api.turinglabs.net/api/v1/jd/farm/create/${{ secrets.MyFruit1 }}/
-          curl -X GET http://api.turinglabs.net/api/v1/jd/farm/create/${{ secrets.MyFruit2 }}/
+          export MyFruit1Res=`curl -X GET http://api.turinglabs.net/api/v1/jd/farm/create/${{ secrets.MyFruit1 }}/ | grep -Po '(?<=code":)[0-9]+'`
+          export MyFruit2Res=`curl -X GET http://api.turinglabs.net/api/v1/jd/farm/create/${{ secrets.MyFruit2 }}/ | grep -Po '(?<=code":)[0-9]+'`
       - name: "种豆得豆互助码上传"
         run: |
-          curl -X GET http://api.turinglabs.net/api/v1/jd/bean/create/${{ secrets.MyBean1 }}/
-          curl -X GET http://api.turinglabs.net/api/v1/jd/bean/create/${{ secrets.MyBean2 }}/
+          export MyBean1Res=`curl -X GET http://api.turinglabs.net/api/v1/jd/bean/create/${{ secrets.MyBean1 }}/ | grep -Po '(?<=code":)[0-9]+'`
+          export MyBean2Res=`curl -X GET http://api.turinglabs.net/api/v1/jd/bean/create/${{ secrets.MyBean2 }}/ | grep -Po '(?<=code":)[0-9]+'`
       - name: "东东萌宠互助码上传"
         run: |
-          curl -X GET http://api.turinglabs.net/api/v1/jd/pet/create/${{ secrets.MyPet1 }}/
-          curl -X GET http://api.turinglabs.net/api/v1/jd/pet/create/${{ secrets.MyPet2 }}/
+          export MyPet1Res=`curl -X GET http://api.turinglabs.net/api/v1/jd/pet/create/${{ secrets.MyPet1 }}/ | grep -Po '(?<=code":)[0-9]+'`
+          export MyPet2Res=`curl -X GET http://api.turinglabs.net/api/v1/jd/pet/create/${{ secrets.MyPet2 }}/ | grep -Po '(?<=code":)[0-9]+'`
       - name: "京喜工厂互助码上传"
         run: |
-          curl -X GET http://api.turinglabs.net/api/v1/jd/jxfactory/create/${{ secrets.MyDreamFactory1 }}/
-          curl -X GET http://api.turinglabs.net/api/v1/jd/jxfactory/create/${{ secrets.MyDreamFactory2 }}/
+          export MyDreamFactory1Res=`curl -X GET http://api.turinglabs.net/api/v1/jd/jxfactory/create/${{ secrets.MyDreamFactory1 }}/ | grep -Po '(?<=code":)[0-9]+'`
+          export MyDreamFactory2Res=`curl -X GET http://api.turinglabs.net/api/v1/jd/jxfactory/create/${{ secrets.MyDreamFactory2 }}/ | grep -Po '(?<=code":)[0-9]+'`
       - name: "东东工厂互助码上传"
         run: |
-          curl -X GET http://api.turinglabs.net/api/v1/jd/ddfactory/create/${{ secrets.MyJdFactory1 }}/
-          curl -X GET http://api.turinglabs.net/api/v1/jd/ddfactory/create/${{ secrets.MyJdFactory2 }}/
+          export MyJdFactory1Res=`curl -X GET http://api.turinglabs.net/api/v1/jd/ddfactory/create/${{ secrets.MyJdFactory1 }}/ | grep -Po '(?<=code":)[0-9]+'`
+          export MyJdFactory2Res=`curl -X GET http://api.turinglabs.net/api/v1/jd/ddfactory/create/${{ secrets.MyJdFactory2 }}/ | grep -Po '(?<=code":)[0-9]+'`
       - name: "京东赚赚互助码上传"
         run: |
-          curl -X GET https://code.chiang.fun/api/v1/jd/jdzz/create/${{ secrets.MyJdzz1 }}/
-          curl -X GET https://code.chiang.fun/api/v1/jd/jdzz/create/${{ secrets.MyJdzz2 }}/
+          export MyJdzz1Res=`curl -X GET https://code.chiang.fun/api/v1/jd/jdzz/create/${{ secrets.MyJdzz1 }}/ | grep -Po '(?<=code":)[0-9]+'`
+          export MyJdzz2Res=`curl -X GET https://code.chiang.fun/api/v1/jd/jdzz/create/${{ secrets.MyJdzz2 }}/ | grep -Po '(?<=code":)[0-9]+'`
       - name: "疯狂的Joy互助码上传"
         run: |
-          curl -X GET https://code.chiang.fun/api/v1/jd/jdcrazyjoy/create/${{ secrets.MyJoy1 }}/
-          curl -X GET https://code.chiang.fun/api/v1/jd/jdcrazyjoy/create/${{ secrets.MyJoy2 }}/
+          export MyJoy1Res=`curl -X GET https://code.chiang.fun/api/v1/jd/jdcrazyjoy/create/${{ secrets.MyJoy1 }}/ | grep -Po '(?<=code":)[0-9]+'`
+          export MyJoy2Res=`curl -X GET https://code.chiang.fun/api/v1/jd/jdcrazyjoy/create/${{ secrets.MyJoy2 }}/ | grep -Po '(?<=code":)[0-9]+'`
       - name: Notify To Telegram
         run: |
-          curl -s -o /dev/null -X POST https://api.telegram.org/bot${{ secrets.TG_BOT_TOKEN }}/sendMessage \
-          -H "Content-Type: application/json" \
-          --data '{"text": "${{github.workflow}}完成","chat_id": "${{ secrets.TG_USER_ID }}"}'
+          echo $MyFruit1Res
+#          curl -s -o /dev/null -X POST https://api.telegram.org/bot${{ secrets.TG_BOT_TOKEN }}/sendMessage \
+#          -H "Content-Type: application/json" \
+#          --data '{"text": "${{github.workflow}}完成","chat_id": "${{ secrets.TG_USER_ID }}"}'
