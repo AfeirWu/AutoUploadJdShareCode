@@ -9,45 +9,104 @@ jobs:
     steps:
       - name: "京东农场互助码上传"
         run: |
-          MyFruit1Code1=0; \
-          while (($MyFruit1Code1 != 400)); \
+          MyFruit1Code=0; \
+          while (($MyFruit1Code != 400)); \
           do \
-            code=`curl http://api.turinglabs.net/api/v1/jd/farm/create/${{ secrets.MyFruit1 }}/ | sed 's/ //g' | grep -Po '(?<="code":)[0-9]+'`; \
-            echo "MyFruit1Code1="$MyFruit1Code1; \
+            MyFruit1Code=`curl http://api.turinglabs.net/api/v1/jd/farm/create/${{ secrets.MyFruit1 }}/ | sed 's/ //g' | grep -Po '(?<="code":)[0-9]+'`; \
+            echo "MyFruit1Code="$MyFruit1Code; \
           done;
-          MyFruit1Code2=0; \
-          while (($MyFruit1Code2 != 400)); \
+          MyFruit2Code=0; \
+          while (($MyFruit2Code != 400)); \
           do \
-            code=`curl http://api.turinglabs.net/api/v1/jd/farm/create/${{ secrets.MyFruit2 }}/ | sed 's/ //g' | grep -Po '(?<="code":)[0-9]+'`; \
-            echo "MyFruit2Code2="$MyFruit2Code2; \
+            MyFruit2Code=`curl http://api.turinglabs.net/api/v1/jd/farm/create/${{ secrets.MyFruit2 }}/ | sed 's/ //g' | grep -Po '(?<="code":)[0-9]+'`; \
+            echo "MyFruit2Code="$MyFruit2Code; \
           done;
       - name: "种豆得豆互助码上传"
         run: |
-          export MyBean1Res=`curl -X GET http://api.turinglabs.net/api/v1/jd/bean/create/${{ secrets.MyBean1 }}/ | grep -Po '(?<=code":)[0-9]+'`
-          export MyBean2Res=`curl -X GET http://api.turinglabs.net/api/v1/jd/bean/create/${{ secrets.MyBean2 }}/ | grep -Po '(?<=code":)[0-9]+'`
+          MyBean1Code=0; \
+          while (($MyBean1Code != 400)); \
+          do \
+            MyBean1Code=`curl http://api.turinglabs.net/api/v1/jd/bean/create/${{ secrets.MyBean1 }}/ | sed 's/ //g' | grep -Po '(?<="code":)[0-9]+'`; \
+            echo "MyBean1Code="$MyBean1Code; \
+          done;
+          MyBean2Code=0; \
+          while (($MyBean2Code != 400)); \
+          do \
+            MyBean2Code=`curl http://api.turinglabs.net/api/v1/jd/bean/create/${{ secrets.MyBean2 }}/ | sed 's/ //g' | grep -Po '(?<="code":)[0-9]+'`; \
+            echo "MyBean2Code="$MyBean2Code; \
+          done;
       - name: "东东萌宠互助码上传"
         run: |
-          export MyPet1Res=`curl -X GET http://api.turinglabs.net/api/v1/jd/pet/create/${{ secrets.MyPet1 }}/ | grep -Po '(?<=code":)[0-9]+'`
-          export MyPet2Res=`curl -X GET http://api.turinglabs.net/api/v1/jd/pet/create/${{ secrets.MyPet2 }}/ | grep -Po '(?<=code":)[0-9]+'`
+          MyPet1Code=0; \
+          while (($MyPet1Code != 400)); \
+          do \
+            MyPet1Code=`curl http://api.turinglabs.net/api/v1/jd/pet/create/${{ secrets.MyPet1 }}/ | sed 's/ //g' | grep -Po '(?<="code":)[0-9]+'`; \
+            echo "MyPet1Code="$MyPet1Code; \
+          done;
+          MyPet2Code=0; \
+          while (($MyPet2Code != 400)); \
+          do \
+            MyPet2Code=`curl http://api.turinglabs.net/api/v1/jd/pet/create/${{ secrets.MyPet2 }}/ | sed 's/ //g' | grep -Po '(?<="code":)[0-9]+'`; \
+            echo "MyPet2Code="$MyPet2Code; \
+          done;
       - name: "京喜工厂互助码上传"
         run: |
-          export MyDreamFactory1Res=`curl -X GET http://api.turinglabs.net/api/v1/jd/jxfactory/create/${{ secrets.MyDreamFactory1 }}/ | grep -Po '(?<=code":)[0-9]+'`
-          export MyDreamFactory2Res=`curl -X GET http://api.turinglabs.net/api/v1/jd/jxfactory/create/${{ secrets.MyDreamFactory2 }}/ | grep -Po '(?<=code":)[0-9]+'`
+          MyDreamFactory1Code=0; \
+          while (($MyDreamFactory1Code != 400)); \
+          do \
+            MyDreamFactory1Code=`curl http://api.turinglabs.net/api/v1/jd/jxfactory/create/${{ secrets.MyDreamFactory1 }}/ | sed 's/ //g' | grep -Po '(?<="code":)[0-9]+'`; \
+            echo "MyDreamFactory1Code="$MyDreamFactory1Code; \
+          done;
+          MyDreamFactory2Code=0; \
+          while (($MyDreamFactory2Code != 400)); \
+          do \
+            MyDreamFactory2Code=`curl http://api.turinglabs.net/api/v1/jd/jxfactory/create/${{ secrets.MyDreamFactory2 }}/ | sed 's/ //g' | grep -Po '(?<="code":)[0-9]+'`; \
+            echo "MyDreamFactory2Code="$MyDreamFactory2Code; \
+          done;
       - name: "东东工厂互助码上传"
         run: |
-          export MyJdFactory1Res=`curl -X GET http://api.turinglabs.net/api/v1/jd/ddfactory/create/${{ secrets.MyJdFactory1 }}/ | grep -Po '(?<=code":)[0-9]+'`
-          export MyJdFactory2Res=`curl -X GET http://api.turinglabs.net/api/v1/jd/ddfactory/create/${{ secrets.MyJdFactory2 }}/ | grep -Po '(?<=code":)[0-9]+'`
+          MyJdFactory1Code=0; \
+          while (($MyJdFactory1Code != 400)); \
+          do \
+            MyJdFactory1Code=`curl http://api.turinglabs.net/api/v1/jd/ddfactory/create/${{ secrets.MyJdFactory1 }}/ | sed 's/ //g' | grep -Po '(?<="code":)[0-9]+'`; \
+            echo "MyJdFactory1Code="$MyJdFactory1Code; \
+          done;
+          MyJdFactory2Code=0; \
+          while (($MyJdFactory2Code != 400)); \
+          do \
+            MyJdFactory2Code=`curl http://api.turinglabs.net/api/v1/jd/ddfactory/create/${{ secrets.MyJdFactory2 }}/ | sed 's/ //g' | grep -Po '(?<="code":)[0-9]+'`; \
+            echo "MyJdFactory2Code="$MyJdFactory2Code; \
+          done;
       - name: "京东赚赚互助码上传"
         run: |
-          export MyJdzz1Res=`curl -X GET https://code.chiang.fun/api/v1/jd/jdzz/create/${{ secrets.MyJdzz1 }}/ | grep -Po '(?<=code":)[0-9]+'`
-          export MyJdzz2Res=`curl -X GET https://code.chiang.fun/api/v1/jd/jdzz/create/${{ secrets.MyJdzz2 }}/ | grep -Po '(?<=code":)[0-9]+'`
+          MyJdzz1Code=0; \
+          while (($MyJdzz1Code != 400)); \
+          do \
+            MyJdzz1Code=`curl https://code.chiang.fun/api/v1/jd/jdzz/create/${{ secrets.MyJdzz1 }}/ | sed 's/ //g' | grep -Po '(?<="code":)[0-9]+'`; \
+            echo "MyJdzz1Code="$MyJdzz1Code; \
+          done;
+          MyJdzz2Code=0; \
+          while (($MyJdzz2Code != 400)); \
+          do \
+            MyJdzz2Code=`curl https://code.chiang.fun/api/v1/jd/jdzz/create/${{ secrets.MyJdzz2 }}/ | sed 's/ //g' | grep -Po '(?<="code":)[0-9]+'`; \
+            echo "MyJdzz2Code="$MyJdzz2Code; \
+          done;
       - name: "疯狂的Joy互助码上传"
         run: |
-          export MyJoy1Res=`curl -X GET https://code.chiang.fun/api/v1/jd/jdcrazyjoy/create/${{ secrets.MyJoy1 }}/ | grep -Po '(?<=code":)[0-9]+'`
-          export MyJoy2Res=`curl -X GET https://code.chiang.fun/api/v1/jd/jdcrazyjoy/create/${{ secrets.MyJoy2 }}/ | grep -Po '(?<=code":)[0-9]+'`
+          MyJoy1Code=0; \
+          while (($MyJoy1Code != 400)); \
+          do \
+            MyJoy1Code=`curl https://code.chiang.fun/api/v1/jd/jdcrazyjoy/create/${{ secrets.MyJoy1 }}/ | sed 's/ //g' | grep -Po '(?<="code":)[0-9]+'`; \
+            echo "MyJoy1Code="$MyJoy1Code; \
+          done;
+          MyJoy2Code=0; \
+          while (($MyJoy2Code != 400)); \
+          do \
+            MyJoy2Code=`curl https://code.chiang.fun/api/v1/jd/jdcrazyjoy/create/${{ secrets.MyJoy2 }}/ | sed 's/ //g' | grep -Po '(?<="code":)[0-9]+'`; \
+            echo "MyJoy2Code="$MyJoy2Code; \
+          done;
       - name: Notify To Telegram
         run: |
-          echo $MyFruit1Res
-#          curl -s -o /dev/null -X POST https://api.telegram.org/bot${{ secrets.TG_BOT_TOKEN }}/sendMessage \
-#          -H "Content-Type: application/json" \
-#          --data '{"text": "${{github.workflow}}完成","chat_id": "${{ secrets.TG_USER_ID }}"}'
+          curl -s -o /dev/null -X POST https://api.telegram.org/bot${{ secrets.TG_BOT_TOKEN }}/sendMessage \
+          -H "Content-Type: application/json" \
+          --data '{"text": "${{github.workflow}}完成","chat_id": "${{ secrets.TG_USER_ID }}"}'
