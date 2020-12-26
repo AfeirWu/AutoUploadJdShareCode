@@ -9,8 +9,18 @@ jobs:
     steps:
       - name: "京东农场互助码上传"
         run: |
-          export MyFruit1Res=`curl -X GET http://api.turinglabs.net/api/v1/jd/farm/create/${{ secrets.MyFruit1 }}/ | grep -Po '(?<=code":)[0-9]+'`
-          export MyFruit2Res=`curl -X GET http://api.turinglabs.net/api/v1/jd/farm/create/${{ secrets.MyFruit2 }}/ | grep -Po '(?<=code":)[0-9]+'`
+          MyFruit1Code1=0; \
+          while (($MyFruit1Code1 != 400)); \
+          do \
+            code=`curl http://api.turinglabs.net/api/v1/jd/farm/create/${{ secrets.MyFruit1 }}/ | sed 's/ //g' | grep -Po '(?<="code":)[0-9]+'`; \
+            echo "MyFruit1Code1="$MyFruit1Code1; \
+          done;
+          MyFruit1Code2=0; \
+          while (($MyFruit1Code2 != 400)); \
+          do \
+            code=`curl http://api.turinglabs.net/api/v1/jd/farm/create/${{ secrets.MyFruit2 }}/ | sed 's/ //g' | grep -Po '(?<="code":)[0-9]+'`; \
+            echo "MyFruit2Code2="$MyFruit2Code2; \
+          done;
       - name: "种豆得豆互助码上传"
         run: |
           export MyBean1Res=`curl -X GET http://api.turinglabs.net/api/v1/jd/bean/create/${{ secrets.MyBean1 }}/ | grep -Po '(?<=code":)[0-9]+'`
