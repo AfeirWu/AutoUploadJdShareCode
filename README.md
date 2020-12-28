@@ -2,8 +2,8 @@
 ##### 使用到的环境变量：
 | Name                    |   归属           | 属性        |
 | :---------------------: | :----------:    | --------- | 
-| `TG_BOT_TOKEN`          |telegram推送     | 非必须 |
-| `TG_USER_ID`            |telegram推送     | 非必须 |
+| `TG_BOT_TOKEN`          |telegram推送      | 非必须 |
+| `TG_USER_ID`            |telegram推送      | 非必须 |
 | `PUSH_KEY`              |微信server酱推送  | 非必须 |
 | `MyFruit1`              |京东农场互助码1    | 非必须 | 
 | `MyFruit2`              |京东农场互助码2    | 非必须 | 
@@ -18,4 +18,4 @@
 | `MyJdzz1`               |京东赚赚互助码1    | 非必须 | 
 | `MyJdzz2`               |京东赚赚互助码2    | 非必须 | 
 | `MyJoy1`                |疯狂的Joy互助码1   | 非必须 | 
-| `MyJoy2`               |疯狂的Joy互助码2    | 非必须 | 
+| `MyJoy2`                |疯狂的Joy互助码2   | 非必须 | 
