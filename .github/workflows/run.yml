@@ -52,9 +52,9 @@ jobs:
             returnCode=`curl http://api.turinglabs.net/api/v1/jd/bean/create/${{ env.MyBean1 }}/ | sed 's/ //g' | grep -Po '(?<="code":)[0-9]+'`; \
             echo "returnCode="$returnCode; \
           done;
-       - name: "种豆得豆互助码2上传"
-         if: env.MyBean2
-         run: |
+      - name: "种豆得豆互助码2上传"
+        if: env.MyBean2
+        run: |
           returnCode=0; \
           while (($returnCode != 400)); \
           do \
