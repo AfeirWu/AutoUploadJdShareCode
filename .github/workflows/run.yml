@@ -6,6 +6,10 @@ on:
 jobs:
   jdJob:
     runs-on: ubuntu-latest
+    env:
+      TG_USER_ID: ${{ secrets.TG_USER_ID }}
+      TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
+      PUSH_KEY: ${{ secrets.PUSH_KEY }}
     steps:
       - name: "京东农场互助码上传"
         run: |
@@ -106,7 +110,14 @@ jobs:
             echo "MyJoy2Code="$MyJoy2Code; \
           done;
       - name: Notify To Telegram
+        if: env.TG_USER_ID && env.TG_BOT_TOKEN
         run: |
-          curl -s -o /dev/null -X POST https://api.telegram.org/bot${{ secrets.TG_BOT_TOKEN }}/sendMessage \
+          curl -s -o /dev/null -X POST https://api.telegram.org/bot${{ env.TG_BOT_TOKEN }}/sendMessage \
           -H "Content-Type: application/json" \
-          --data '{"text": "${{github.workflow}}完成","chat_id": "${{ secrets.TG_USER_ID }}"}'
+          --data '{"text": "${{github.workflow}}完成！","chat_id": "${{ env.TG_USER_ID }}"}'
+      - name: Notify To Server酱
+        if: env.PUSH_KEY
+        run: |
+          curl -s -o /dev/null -X POST https://sc.ftqq.com/${{ env.PUSH_KEY }}.send \
+          -H "Content-Type: application/x-www-form-urlencoded" \
+          --data 'text=${{ github.workflow }} 完成！&desp=${{ github.workflow }} 完成！'
