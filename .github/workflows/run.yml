@@ -1,7 +1,7 @@
 name: 自动上传京东互助码
 on:
   schedule:
-    - cron: '10 18 L,9,19 * *'
+    - cron: '10 18 9,19,28-31 * *'
   workflow_dispatch:
 jobs:
   jdJob:
