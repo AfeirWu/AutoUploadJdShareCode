@@ -24,6 +24,8 @@ jobs:
       MyJdzz2: ${{ secrets.MyJdzz2 }}
       MyJoy1: ${{ secrets.MyJoy1 }}
       MyJoy2: ${{ secrets.MyJoy2 }}
+      MyCash1: ${{ secrets.MyCash1 }}
+      MyCash2: ${{ secrets.MyCash2 }}
     steps:
       - name: "京东农场互助码1上传"
         if: env.MyFruit1
@@ -149,6 +151,24 @@ jobs:
           while (($returnCode != 400)); \
           do \
             returnCode=`curl https://code.chiang.fun/api/v1/jd/jdcrazyjoy/create/${{ env.MyJoy2 }}/ | sed 's/ //g' | grep -Po '(?<="code":)[0-9]+'`; \
+            echo "returnCode="$returnCode; \
+          done;
+      - name: "签到领现金互助码1上传"
+        if: env.MyCash1
+        run: |
+          returnCode=0; \
+          while (($returnCode != 400)); \
+          do \
+            returnCode=`curl https://code.chiang.fun/api/v1/jd/jdcash/create/${{ env.MyCash1 }}/ | sed 's/ //g' | grep -Po '(?<="code":)[0-9]+'`; \
+            echo "returnCode="$returnCode; \
+          done;
+      - name: "签到领现金互助码2上传"
+        if: env.MyCash2
+        run: |
+          returnCode=0; \
+          while (($returnCode != 400)); \
+          do \
+            returnCode=`curl https://code.chiang.fun/api/v1/jd/jdcash/create/${{ env.MyCash2 }}/ | sed 's/ //g' | grep -Po '(?<="code":)[0-9]+'`; \
             echo "returnCode="$returnCode; \
           done;
       - name: Notify To Telegram
